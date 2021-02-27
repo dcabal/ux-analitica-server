@@ -1,0 +1,30 @@
+{
+  "name": "ux-analitica-server",
+  "version": "1.0.0",
+  "description": "API para la recolección de datos de usabilidad. Forma parte del TFM del Máster en Ingeniería Web de la Universidad de Oviedo\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcabal/ux-analitica-server.git"
+  },
+  "keywords": [
+    "UX",
+    "analysis"
+  ],
+  "author": "Daniel Cabal Fernández",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dcabal/ux-analitica-server/issues"
+  },
+  "homepage": "https://github.com/dcabal/ux-analitica-server#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.18",
+    "nodemon": "^2.0.7"
+  }
+}
