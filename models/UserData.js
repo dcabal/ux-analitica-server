@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
-const Coordinate = require('./Coordinate');
 const Interaction = require('./Interaction');
-const ScreenSize = require('./ScreenSize');
-
 
 const UserDataSchema = mongoose.Schema({
     timeTotal: {
@@ -18,7 +15,10 @@ const UserDataSchema = mongoose.Schema({
         required: true
     },
     screenSize: {
-        type: ScreenSize,
+        type: {
+            width: Number,
+            height: Number
+        },
         required: true
     },
     totalClicks : {
@@ -31,7 +31,10 @@ const UserDataSchema = mongoose.Schema({
         required: true
     },
     mouseMovement: {
-        type: [Coordinate],
+        type: [{
+            x: Number,
+            y: Number
+        }],
         required: true
     },
     interactions: {
