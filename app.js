@@ -6,11 +6,13 @@ const mongoose = require('mongoose');
 const app = express();
 
 const ownerRoute = require('./routes/owner');
+const userDataRoute = require('./routes/userData');
 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/owner', ownerRoute);
+app.use('/userData', userDataRoute);
 
 mongoose.connect(
     process.env.DB_CONN,

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Interaction = require('./Interaction');
 
 const UserDataSchema = mongoose.Schema({
+    token: {
+        type: String,
+        required: true
+    },
     timeTotal: {
         type: Number,
         required: true
