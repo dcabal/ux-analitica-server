@@ -10,8 +10,8 @@ const ownerRoute = require('./routes/owner');
 const userDataRoute = require('./routes/userData');
 
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/owner', ownerRoute);
 app.use('/userData', userDataRoute);
 

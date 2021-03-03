@@ -3,11 +3,10 @@ const router = express.Router();
 const UserData = require('../models/UserData');
 
 router.post('/', async (req, res) => {
-    const userData = new UserData({...req.body});
-
+    const userData = new UserData(req.body);
     userData.save()
-    .then(res => res.json(res))
-    .catch(err => res.json(err));
+    .then(result => res.json(result))
+    .catch(err => res.status(400).json(err));
 });
 
 module.exports = router;
