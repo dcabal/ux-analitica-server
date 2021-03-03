@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Interaction = require('./Interaction');
+const Interaction = require('./Interaction').schema;
 
 const UserDataSchema = mongoose.Schema({
     token: {
