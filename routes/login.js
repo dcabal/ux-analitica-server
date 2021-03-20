@@ -8,17 +8,23 @@ const Owner = require('../models/Owner');
 
 router.post('/', async (req, res) => {
     const { userName, password } = req.body;
+    
+    if ( !userName || !password)
+        return res.sendStatus(400);
+
     const user = await Owner.findOne({ userName }).lean();
 
-    if (!user)
-        return res.status(404).json({ status: 'Not found' });
+    if (!user){
+        res.statusMessage = 'Usuario o contraseña incorrectos';
+        return res.sendStatus(404);
+    }
 
     if (await bcrypt.compare(password, user.password)) {
         const token = jwt.sign({ id: user._id }, process.env.SCR)
         return res.json({ status: 'ok', data: token });
     }
 
-    res.status(404).json({ status: 'Not found' });
+    return res.sendStatus(500);
 });
 
 module.exports = router;

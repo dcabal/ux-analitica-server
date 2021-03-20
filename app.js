@@ -29,4 +29,4 @@ mongoose.connect(
     () => console.log('Conexión establecida con la base de datos.')
 );
 
-app.listen(PORT, HOST, `Servidor escuchando en ${HOST}:${PORT}`); 
+app.listen(PORT, HOST, () => console.log(`Servidor escuchando en ${HOST}:${PORT}`)); 
