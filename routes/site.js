@@ -4,11 +4,12 @@ const jwt = require('jsonwebtoken');
 const { v4: uuid } = require('uuid');
 const router = express.Router();
 const Owner = require('../models/Owner');
+const UserData = require('../models/UserData');
 
 router.get('/', async (req, res) => {
     await Owner.findOne({'sites.token': req.query.token, 'sites.host': req.query.host})
     .then(owner => {
-        if(!owner) {
+        if (!owner) {
             res.statusMessage = 'Sitio no encontrado';
             return res.sendStatus(404);
         } else
@@ -20,7 +21,7 @@ router.get('/', async (req, res) => {
 });
 
 router.patch('/', async (req, res) => {
-    const token = req.headers?.authorization.split(' ').pop();
+    const token = req.headers?.authorization?.split(' ').pop();
 
     jwt.verify(token, process.env.SCR, async (err, verified) => {
         if (err) {
@@ -40,7 +41,7 @@ router.patch('/', async (req, res) => {
             }, 
             { new: true })
         .then(owner => {
-            if(!owner) 
+            if (!owner) 
                 return res.sendStatus(404);
             else
                 return res.json({
@@ -51,6 +52,29 @@ router.patch('/', async (req, res) => {
             return res.status(500).json(err);
         });
     });
-})
+});
+
+router.get('/data', async (req, res) => {
+    const token = req.headers?.authorization?.split(' ').pop();
+
+    jwt.verify(token, process.env.SCR, async (err, _) => {
+        if (err) {
+            res.statusMessage = err.message;
+            return res.sendStatus(401);
+        }
+
+        await UserData.find({ token: req.query.token })
+        .then(siteData => {
+            if (!siteData.length) {
+                res.statusMessage = 'Datos de sitio no encontrados';
+                return res.sendStatus(404);
+            } else
+                return res.json(siteData);
+        })
+        .catch(err => {
+            return res.status(500).json(err);
+        });
+    });
+});
 
 module.exports = router;
