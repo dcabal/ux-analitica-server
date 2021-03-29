@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
+const siteRoute = require('./routes/site');
 const ownerRoute = require('./routes/owner');
 const userDataRoute = require('./routes/userData');
 const loginRoute = require('./routes/login');
@@ -14,6 +15,7 @@ const signUpRoute = require('./routes/signUp');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/site', siteRoute);
 app.use('/owner', ownerRoute);
 app.use('/userData', userDataRoute);
 app.use('/login', loginRoute);
@@ -24,7 +26,8 @@ mongoose.connect(
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useFindAndModify: false
     },
     () => console.log('Conexión establecida con la base de datos.')
 );

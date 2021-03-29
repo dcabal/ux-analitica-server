@@ -21,10 +21,23 @@ router.post('/', async (req, res) => {
 
     if (await bcrypt.compare(password, user.password)) {
         const token = jwt.sign({ id: user._id }, process.env.SCR)
-        return res.json({ status: 'ok', data: token });
+        return res.json(
+            { 
+                status: 'ok', 
+                data: { 
+                    token , 
+                    owner: {
+                        userName: user.userName,
+                        email: user.email,
+                        sites: user.sites
+                    }
+                }
+            }
+        );
     }
 
-    return res.sendStatus(500);
+    res.statusMessage = 'Usuario o contraseña incorrectos';
+    return res.sendStatus(404);
 });
 
 module.exports = router;
