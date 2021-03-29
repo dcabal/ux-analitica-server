@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Interaction = require('./Interaction').schema;
 
 const UserDataSchema = mongoose.Schema({
+    date: {
+        default: new Date()
+    },
     token: {
         type: String,
         required: true
