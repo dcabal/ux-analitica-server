@@ -38,7 +38,7 @@ const UserDataSchema = mongoose.Schema({
         default: 0,
         required: true
     },
-    mouseMovement: {
+    mouseMovements: {
         type: [{
             x: Number,
             y: Number

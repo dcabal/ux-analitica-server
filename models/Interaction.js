@@ -9,17 +9,12 @@ const InteractionSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    mouseBefore: {
+    mouseMovementBefore: {
         type: Number,
         default: 0,
         required: false
     },
-    tabsBefore: {
-        type: Number,
-        default: 0,
-        required: false
-    },
-    clicksBefore: {
+    tabPressesBefore: {
         type: Number,
         default: 0,
         required: false
