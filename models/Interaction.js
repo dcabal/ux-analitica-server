@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const InteractionSchema = mongoose.Schema({
-    dataUxa: {
+    trackedElement: {
         type: String,
         required: false
     },
